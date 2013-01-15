@@ -15,7 +15,7 @@ Tested on:
 ## Attributes
 
 * `node['postgis']['version']` - the version of PostGIS to use (default: "2.0.2").
-* `node['postgis']['sql_folder']` - the directory where PostGIS installs its SQL files, somewhere inside `\`pg\_config --sharedir\`/contrib` (default: "postgis-2.0").
+* `node['postgis']['sql_folder']` - the directory where PostGIS installs its SQL files, somewhere inside ```pg_config --sharedir`/contrib`` (default: "postgis-2.0").
 * `node['postgis']['template_name']` - the name of the PostGIS template database to create (default: "template\_postgis").
 
 
