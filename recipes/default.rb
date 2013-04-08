@@ -1,4 +1,5 @@
 postgis_version = node['postgis']['version']
+pg_sharedir = node['postgis']['sharedir']
 tarball = "postgis-#{postgis_version}.tar"
 tarball_gz = "#{tarball}.gz"
 remote_file "/tmp/#{tarball_gz}" do
@@ -18,7 +19,7 @@ bash "install_postgis_#{postgis_version}" do
     ldconfig
   EOH
   command ""
-  creates "#{`pg_config --sharedir`}/extension/postgis--#{postgis_version}.sql"
+  creates "#{pg_sharedir}/extension/postgis--#{postgis_version}.sql"
   action :run
 end
 
