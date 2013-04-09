@@ -1,4 +1,5 @@
 postgis_version = node['postgis']['version']
+pg_sharedir = node['postgis']['sharedir']
 tarball = "postgis-#{postgis_version}.tar"
 tarball_gz = "#{tarball}.gz"
 remote_file "/tmp/#{tarball_gz}" do
@@ -14,11 +15,12 @@ bash "install_postgis_#{postgis_version}" do
     cd #{untar_dir} && \
     tar xzvf /tmp/#{tarball_gz} && \
     cd postgis-#{postgis_version} && \
-    ./configure && make && make install && \
+    ./configure --with-raster --with-topology  --enable-debug && \
+    make && make install && \
     ldconfig
   EOH
   command ""
-  creates "#{`pg_config --sharedir`}/extension/postgis--#{postgis_version}.sql"
+  creates "#{pg_sharedir}/extension/postgis--#{postgis_version}.sql"
   action :run
 end
 
@@ -39,6 +41,20 @@ end
 execute "load_spatial_ref_sys_sql" do
   user "postgres"
   command "psql -d #{node['postgis']['template_name']} -f `pg_config --sharedir`/contrib/#{node['postgis']['sql_folder']}/spatial_ref_sys.sql"
+  only_if "psql -qAt --list | grep '^#{node['postgis']['template_name']}\|'", user: 'postgres'
+  action :run
+end
+
+execute "load_rtpostgis_sql" do
+  user "postgres"
+  command "psql -d #{node['postgis']['template_name']} -f `pg_config --sharedir`/contrib/#{node['postgis']['sql_folder']}/rtpostgis.sql"
+  only_if "psql -qAt --list | grep '^#{node['postgis']['template_name']}\|'", user: 'postgres'
+  action :run
+end
+
+execute "load_topology_sql" do
+  user "postgres"
+  command "psql -d #{node['postgis']['template_name']} -f `pg_config --sharedir`/contrib/#{node['postgis']['sql_folder']}/topology.sql"
   only_if "psql -qAt --list | grep '^#{node['postgis']['template_name']}\|'", user: 'postgres'
   action :run
 end
