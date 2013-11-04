@@ -51,7 +51,7 @@ Then, put something like this in your node file:
       // ...
     ]
 
-You'll also need to install PostgreSQL itself before PostGIS, but I assume you've already got a cookbook for that or will have no trouble finding/writing one. This PostGIS cookbook won't do it for you. Note that if you installed Postgres using [the Opscode cook](https://github.com/opscode-cookbooks/postgresql) on Ubuntu, you'll need to do this somewhere before the postgis recipe:
+You'll also need to install PostgreSQL itself before PostGIS, but I assume you've already got a cookbook for that or will have no trouble finding/writing one. This PostGIS cookbook won't do it for you. Note that if you installed Postgres using [the Opscode cookbook](https://github.com/opscode-cookbooks/postgresql) on Ubuntu, you'll need to do this somewhere before the postgis recipe:
 
     package 'postgresql-server-dev-9.1'
 
