@@ -46,7 +46,7 @@ Then, put something like this in your node file:
       "recipe[geos]",
       "recipe[gdal]",
       "recipe[proj]",
-      "recipe[postgres]",
+      "recipe[postgresql::server]",
       "recipe[postgis]"
       // ...
     ]
