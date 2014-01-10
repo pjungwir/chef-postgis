@@ -43,6 +43,7 @@ Then, put something like this in your node file:
 
     "run_list": [
       // ...
+      "recipe[libxml2]",
       "recipe[geos]",
       "recipe[gdal]",
       "recipe[proj]",
