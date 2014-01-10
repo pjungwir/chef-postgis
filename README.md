@@ -22,7 +22,7 @@ Tested on:
 Usage
 =====
 
-First, you'll need the [GEOS](https://github.com/pjungwir/chef-geos), [GDAL](https://github.com/pjungwir/chef-gdal), and [PROJ](https://github.com/pjungwir/chef-proj) cookbooks.
+First, you'll need the [LIBXML2](https://github.com/tomlinton/chef-libxml2) [GEOS](https://github.com/pjungwir/chef-geos), [GDAL](https://github.com/pjungwir/chef-gdal), and [PROJ](https://github.com/pjungwir/chef-proj) cookbooks.
 Then, put something like this in your node file:
 
     "geos": {

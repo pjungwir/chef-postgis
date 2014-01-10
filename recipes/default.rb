@@ -15,7 +15,7 @@ bash "install_postgis_#{postgis_version}" do
     cd #{untar_dir} && \
     tar xzvf /tmp/#{tarball_gz} && \
     cd postgis-#{postgis_version} && \
-    ./configure --with-raster --with-topology  --enable-debug && \
+    ./configure --without-doc --with-raster --with-topology --enable-debug && \
     make && make install && \
     ldconfig
   EOH
